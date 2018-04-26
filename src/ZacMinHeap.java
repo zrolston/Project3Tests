@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinHeap<E extends Comparable<E>> {
+public class ZacMinHeap<E extends Comparable<E>> {
 
     private List<E> heap;
     private int count;
 
-    public MinHeap(){
+    public ZacMinHeap(){
         this.heap = new ArrayList<E>(10);
         this.count = 0;
     }
 
-    public MinHeap(int init){
+    public ZacMinHeap(int init){
         this.heap = new ArrayList<E>(init);
         this.count = 0;
     }

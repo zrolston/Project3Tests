@@ -1,13 +1,13 @@
-public class CharFreq implements Comparable<CharFreq> {
+public class ZacCharFreq implements Comparable<ZacCharFreq> {
 
     private int frequency;
     private char myChar;
-    private CharFreq left;
-    private CharFreq right;
+    private ZacCharFreq left;
+    private ZacCharFreq right;
 
-    public CharFreq(){}
+    public ZacCharFreq(){}
 
-    public CharFreq(int freq, char myChar){
+    public ZacCharFreq(int freq, char myChar){
         this.frequency = freq;
         this.myChar = myChar;
     }
@@ -28,24 +28,24 @@ public class CharFreq implements Comparable<CharFreq> {
         myChar = c;
     }
 
-    public CharFreq getRight() {
+    public ZacCharFreq getRight() {
         return right;
     }
 
-    public CharFreq getLeft() {
+    public ZacCharFreq getLeft() {
         return left;
     }
 
-    public void setLeft(CharFreq l){
+    public void setLeft(ZacCharFreq l){
         this.left = l;
     }
 
-    public void setRight(CharFreq r){
+    public void setRight(ZacCharFreq r){
         this.right = r;
     }
 
     @Override
-    public int compareTo(CharFreq comp) {
+    public int compareTo(ZacCharFreq comp) {
         if(this.frequency == comp.getFrequency()){
             return 0;
         }

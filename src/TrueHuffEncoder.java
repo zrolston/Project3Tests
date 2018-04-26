@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class HuffEncoder implements HuffmanCoding {
+public class TrueHuffEncoder {
 
     public String fileToString(File inputFile){
         if(!inputFile.canRead()){
@@ -24,14 +24,14 @@ public class HuffEncoder implements HuffmanCoding {
         return fileString;
     }
 
-    @Override
+    
     public String getFrequencies(File inputFile){
         String fString = fileToString(inputFile);
 
-        List<CharFreq> freqs = getFreqs(fString);
+        List<ZacCharFreq> freqs = getFreqs(fString);
 
-        CharFreq[] sort = new CharFreq[128];
-        for(CharFreq c : freqs){
+        ZacCharFreq[] sort = new ZacCharFreq[128];
+        for(ZacCharFreq c : freqs){
             sort[c.getChar()] = c;
         }
 
@@ -45,13 +45,13 @@ public class HuffEncoder implements HuffmanCoding {
         return freqString;
     }
 
-    @Override
-    public HuffTree buildTree(File inputFile) {
-        return new HuffTree(fileToString(inputFile));
+    
+    public TrueHuffTree buildTree(File inputFile) {
+        return new TrueHuffTree(fileToString(inputFile));
     }
 
-    @Override
-    public String encodeFile(File inputFile, HuffTree huffTree) {
+    
+    public String encodeFile(File inputFile, TrueHuffTree huffTree) {
         String encoded = "";
         String fileString = fileToString(inputFile);
         HashMap<Character, String> encodeTable = huffTree.getEncodeTable();
@@ -63,10 +63,10 @@ public class HuffEncoder implements HuffmanCoding {
         return encoded;
     }
 
-    @Override
-    public String decodeFile(String code, HuffTree huffTree) {
-        CharFreq root = huffTree.getRoot();
-        CharFreq curr = root;
+    
+    public String decodeFile(String code, TrueHuffTree huffTree) {
+        ZacCharFreq root = huffTree.getRoot();
+        ZacCharFreq curr = root;
 
         String decode = "";
 
@@ -92,8 +92,8 @@ public class HuffEncoder implements HuffmanCoding {
         return decode;
     }
 
-    @Override
-    public String traverseHuffmanTree(HuffTree huffTree) {
+    
+    public String traverseHuffmanTree(TrueHuffTree huffTree) {
         HashMap<Character, String> encodeTable = huffTree.getEncodeTable();
         String printString = "";
 
@@ -111,7 +111,7 @@ public class HuffEncoder implements HuffmanCoding {
         return printString;
     }
 
-    private List<CharFreq> getFreqs(String inputString){
+    private List<ZacCharFreq> getFreqs(String inputString){
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 
         for(int i = 0; i < inputString.length(); i++){
@@ -122,10 +122,10 @@ public class HuffEncoder implements HuffmanCoding {
             map.put(inputString.charAt(i), map.get(inputString.charAt(i))+1);
         }
 
-        ArrayList<CharFreq> list = new ArrayList<CharFreq>();
+        ArrayList<ZacCharFreq> list = new ArrayList<ZacCharFreq>();
 
         for(Character c : map.keySet()){
-            list.add(new CharFreq(map.get(c), c));
+            list.add(new ZacCharFreq(map.get(c), c));
         }
 
         return list;

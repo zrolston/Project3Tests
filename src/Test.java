@@ -5,10 +5,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Test {
     public static void main(String[] args) {
-        HuffEncoder hc = new HuffEncoder();
+        TrueHuffEncoder hc = new TrueHuffEncoder();
         File myF = new File("NonCollidingTest.txt");
         System.out.println(hc.getFrequencies(myF));
-        HuffTree myTree = (hc.buildTree(myF));
+        TrueHuffTree myTree = (hc.buildTree(myF));
 
         System.out.println(hc.traverseHuffmanTree(myTree));
         String enc = hc.encodeFile(myF, myTree);
@@ -26,7 +26,7 @@ public class Test {
         ArrayList<Integer> myList = new ArrayList<Integer>(num);
         myList.add(1);
         myList.add(2);
-        MinHeap<Integer> heap = new MinHeap<Integer>(num);
+        ZacMinHeap<Integer> heap = new ZacMinHeap<Integer>(num);
 
         heap.push(1);
         heap.push(2);
@@ -51,8 +51,8 @@ public class Test {
         StringBuilder writeString = new StringBuilder();
         int length = 0;
 
-        ArrayList<CharFreq> freqs = makeFreqs(num);
-        for(CharFreq cf : freqs){
+        ArrayList<ZacCharFreq> freqs = makeFreqs(num);
+        for(ZacCharFreq cf : freqs){
             for(int i = 0; i < cf.getFrequency(); i++){
                 int randomNum = ThreadLocalRandom.current().nextInt(0, length + 1);
                 writeString.insert(randomNum, cf.getChar());
@@ -63,8 +63,8 @@ public class Test {
         return writeString.toString();
     }
 
-    static ArrayList<CharFreq> makeFreqs(int num){
-        ArrayList<CharFreq> cf = new ArrayList<CharFreq>(8);
+    static ArrayList<ZacCharFreq> makeFreqs(int num){
+        ArrayList<ZacCharFreq> cf = new ArrayList<ZacCharFreq>(8);
         HashSet<Character> set = new HashSet<Character>();
         for(Integer i : generateFreqs(num)){
             Character c = (char)ThreadLocalRandom.current().nextInt(32, 128);
@@ -72,7 +72,7 @@ public class Test {
                 c = (char)ThreadLocalRandom.current().nextInt(32, 128);
             }
 
-            cf.add(new CharFreq(i, c));
+            cf.add(new ZacCharFreq(i, c));
         }
 
         return cf;

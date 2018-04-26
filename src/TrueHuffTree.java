@@ -2,24 +2,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HuffTree {
+public class TrueHuffTree {
 
     ZacCharFreq root;
 
-    public HuffTree(){
-        root = null;
-    }
+    public TrueHuffTree(){
+            root = null;
+        }
 
-    public HuffTree(ZacCharFreq root){
-        this.root = root;
-    }
+    public TrueHuffTree(ZacCharFreq root){
+            this.root = root;
+        }
 
-    public HuffTree(String fileString){
-        setTree(fileString);
-    }
+    public TrueHuffTree(String fileString){
+            setTree(fileString);
+        }
 
-    private ZacCharFreq buildHuffTree(ZacMinHeap<ZacCharFreq> myHeap) {
-        ZacCharFreq left;
+        private ZacCharFreq buildHuffTree(ZacMinHeap<ZacCharFreq> myHeap) {
+            ZacCharFreq left;
         ZacCharFreq right;
         ZacCharFreq sumNode;
 

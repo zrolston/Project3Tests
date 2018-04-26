@@ -11,11 +11,11 @@ public interface HuffmanCoding
 	//take a file as input and create a Huffman Tree
 	public HuffTree buildTree(File inputFile);
 	
-	//take a file and a HuffTree and encode the file.  
+	//take a file and a TrueHuffTree and encode the file.
 	//output a string of 1's and 0's representing the file
 	public String encodeFile(File inputFile, HuffTree huffTree);
 
-	//take a String and HuffTree and output the decoded words
+	//take a String and TrueHuffTree and output the decoded words
 	public String decodeFile(String code, HuffTree huffTree);
 
 	//print the characters and their codes
