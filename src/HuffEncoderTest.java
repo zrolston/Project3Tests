@@ -63,6 +63,24 @@ class HuffEncoderTest {
     }
 
     @Test
+    void testNonCollisionsEncide () {
+        TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
+        HuffmanCoding studentEncoder =  new HuffmanEncoder();
+
+        File nonCollider = new File("NonCollidingTest.txt");
+
+        String expectedEncode = correctEncoder.encodeFile(nonCollider, correctEncoder.buildTree(nonCollider)).trim();
+
+        assertTimeoutPreemptively(ofMillis(1000), () -> {
+            String studentEncode = null;
+            HuffTree studenthufftree = studentEncoder.buildTree(nonCollider);
+            studentEncode = studentEncoder.encodeFile(nonCollider, studenthufftree).trim();
+
+            assertEquals(expectedEncode, studentEncode);
+        });
+    }
+
+    @Test
     void testCollisionsEncodeDecodeFile() {
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 

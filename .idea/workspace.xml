@@ -32,8 +32,8 @@
       <file leaf-file-name="HuffEncoderTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HuffEncoderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+            <state relative-caret-position="89">
+              <caret line="74" column="32" lean-forward="false" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -420,6 +420,9 @@
       <configuration name="HuffEncoderTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="HuffEncoderTest - 2018.04.26 at 15h 12m 39s.xml">
+      <configuration name="HuffEncoderTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HuffEncoderTest - 2018.04.27 at 20h 35m 46s.xml">
       <configuration name="HuffEncoderTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -903,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HuffEncoderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+        <state relative-caret-position="89">
+          <caret line="74" column="32" lean-forward="false" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
           <folding />
         </state>
       </provider>
