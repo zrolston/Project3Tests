@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HuffEncoderTest {
 
+    //Score: 5
     @Test
     void testNonCollisionsGetFrequencies() {
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
@@ -26,6 +27,7 @@ class HuffEncoderTest {
         });
     }
 
+    //Score: 5
     @Test
     void testCollisionsGetFrequencies() {
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
@@ -43,6 +45,7 @@ class HuffEncoderTest {
         });
     }
 
+    //Score: 20
     @Test
     void testNonCollisionsEncodeToDecodeFile() {
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
@@ -62,8 +65,9 @@ class HuffEncoderTest {
         });
     }
 
+    //Score: 20
     @Test
-    void testNonCollisionsEncide () {
+    void testNonCollisionsEncode () {
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 
@@ -80,6 +84,7 @@ class HuffEncoderTest {
         });
     }
 
+    //Score: 20
     @Test
     void testCollisionsEncodeDecodeFile() {
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
@@ -99,6 +104,7 @@ class HuffEncoderTest {
         });
     }
 
+    //Score: 10
     @Test
     void testAllASCIITraverseHuffmanTree() {
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
