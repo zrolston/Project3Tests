@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Test {
-    public static void main(String[] args) {
-        TrueHuffEncoder hc = new TrueHuffEncoder();
-        File myF = new File("NonCollidingTest.txt");
+    public static void main(String[] args) throws Exception {
+        HuffmanCoding hc = new HuffmanEncoder();
+        File myF = new File("randTest.txt");
         System.out.println(hc.getFrequencies(myF));
-        TrueHuffTree myTree = (hc.buildTree(myF));
+        HuffTree myTree = (hc.buildTree(myF));
 
         System.out.println(hc.traverseHuffmanTree(myTree));
         String enc = hc.encodeFile(myF, myTree);

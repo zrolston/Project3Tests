@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import static java.time.Duration.ofMillis;
@@ -11,7 +12,7 @@ class HuffEncoderTest {
 
     //Score: 5
     @Test
-    void testNonCollisionsGetFrequencies() {
+    void testNonCollisionsGetFrequencies() throws Exception{
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 
@@ -29,7 +30,7 @@ class HuffEncoderTest {
 
     //Score: 5
     @Test
-    void testCollisionsGetFrequencies() {
+    void testCollisionsGetFrequencies() throws Exception{
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 
@@ -45,16 +46,17 @@ class HuffEncoderTest {
         });
     }
 
-    //Score: 20
+    //Score: 10
     @Test
-    void testNonCollisionsEncodeToDecodeFile() {
+    void testNonCollisionsEncodeToDecodeFileInOrderCalls() throws Exception{
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 
         File nonCollider = new File("NonCollidingTest.txt");
 
         String fileString = stringFromFile(nonCollider).trim();
 
-        assertTimeoutPreemptively(ofMillis(1000), () -> {
+        assertTimeoutPreemptively(ofMillis(1500), () -> {
+            studentEncoder.getFrequencies(nonCollider);
             HuffTree studentHuffTree = studentEncoder.buildTree(nonCollider);
             String studentEncode = null;
             String studentDecode = null;
@@ -65,31 +67,12 @@ class HuffEncoderTest {
         });
     }
 
-    //Score: 20
+    //Score: 10
     @Test
-    void testNonCollisionsEncode () {
-        TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
+    void testNonCollisionsEncodeToDecodeFile() throws Exception{
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 
         File nonCollider = new File("NonCollidingTest.txt");
-
-        String expectedEncode = correctEncoder.encodeFile(nonCollider, correctEncoder.buildTree(nonCollider)).trim();
-
-        assertTimeoutPreemptively(ofMillis(1000), () -> {
-            String studentEncode = null;
-            HuffTree studenthufftree = studentEncoder.buildTree(nonCollider);
-            studentEncode = studentEncoder.encodeFile(nonCollider, studenthufftree).trim();
-
-            assertEquals(expectedEncode, studentEncode);
-        });
-    }
-
-    //Score: 20
-    @Test
-    void testCollisionsEncodeDecodeFile() {
-        HuffmanCoding studentEncoder =  new HuffmanEncoder();
-
-        File nonCollider = new File("HelloWorld.txt");
 
         String fileString = stringFromFile(nonCollider).trim();
 
@@ -106,7 +89,87 @@ class HuffEncoderTest {
 
     //Score: 10
     @Test
-    void testAllASCIITraverseHuffmanTree() {
+    void testNonCollisionsEncodeInOrderCalls () throws Exception{
+        TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
+        HuffmanCoding studentEncoder =  new HuffmanEncoder();
+
+        File nonCollider = new File("NonCollidingTest.txt");
+
+        String expectedEncode = correctEncoder.encodeFile(nonCollider, correctEncoder.buildTree(nonCollider)).trim();
+
+        assertTimeoutPreemptively(ofMillis(1000), () -> {
+            studentEncoder.getFrequencies(nonCollider);
+            String studentEncode = null;
+            HuffTree studenthufftree = studentEncoder.buildTree(nonCollider);
+            studentEncode = studentEncoder.encodeFile(nonCollider, studenthufftree).trim();
+
+            assertEquals(expectedEncode, studentEncode);
+        });
+    }
+
+    //Score: 10
+    @Test
+    void testNonCollisionsEncode () throws Exception{
+        TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
+        HuffmanCoding studentEncoder =  new HuffmanEncoder();
+
+        File nonCollider = new File("NonCollidingTest.txt");
+
+        String expectedEncode = correctEncoder.encodeFile(nonCollider, correctEncoder.buildTree(nonCollider)).trim();
+
+        assertTimeoutPreemptively(ofMillis(1000), () -> {
+            String studentEncode = null;
+            HuffTree studenthufftree = studentEncoder.buildTree(nonCollider);
+            studentEncode = studentEncoder.encodeFile(nonCollider, studenthufftree).trim();
+
+            assertEquals(expectedEncode, studentEncode);
+        });
+    }
+
+    //Score: 10
+    @Test
+    void testCollisionsEncodeDecodeFileInOrderCalls() throws Exception {
+        HuffmanCoding studentEncoder =  new HuffmanEncoder();
+
+        File nonCollider = new File("HelloWorld.txt");
+
+        String fileString = stringFromFile(nonCollider).trim();
+
+        assertTimeoutPreemptively(ofMillis(1000), () -> {
+            studentEncoder.getFrequencies(nonCollider);
+            HuffTree studentHuffTree = studentEncoder.buildTree(nonCollider);
+            String studentEncode = null;
+            String studentDecode = null;
+            studentEncode = studentEncoder.encodeFile(nonCollider, studentHuffTree).trim();
+            HuffmanCoding newStudentEncoder =  new HuffmanEncoder();
+            studentDecode = newStudentEncoder.decodeFile(studentEncode, studentHuffTree).trim();
+            assertEquals(fileString, studentDecode);
+        });
+    }
+
+    //Score: 10
+    @Test
+    void testCollisionsEncodeDecodeFile() throws Exception {
+        HuffmanCoding studentEncoder =  new HuffmanEncoder();
+
+        File nonCollider = new File("HelloWorld.txt");
+
+        String fileString = stringFromFile(nonCollider).trim();
+
+        assertTimeoutPreemptively(ofMillis(1000), () -> {
+            HuffTree studentHuffTree = studentEncoder.buildTree(nonCollider);
+            String studentEncode = null;
+            String studentDecode = null;
+            studentEncode = studentEncoder.encodeFile(nonCollider, studentHuffTree).trim();
+            HuffmanCoding newStudentEncoder =  new HuffmanEncoder();
+            studentDecode = newStudentEncoder.decodeFile(studentEncode, studentHuffTree).trim();
+            assertEquals(fileString, studentDecode);
+        });
+    }
+
+    //Score: 5
+    @Test
+    void testTraverseHuffmanTreeFormat() throws Exception{
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
         HuffmanCoding studentEncoder =  new HuffmanEncoder();
 
@@ -117,6 +180,7 @@ class HuffEncoderTest {
 
         assertTimeoutPreemptively(ofMillis(1000), () -> {
             String studentTable = null;
+            studentEncoder.getFrequencies(nonCollider);
             HuffTree studentHuffTree = studentEncoder.buildTree(nonCollider);
             studentTable = studentEncoder.traverseHuffmanTree(studentHuffTree).trim();
 
@@ -124,7 +188,43 @@ class HuffEncoderTest {
         });
     }
 
-    public String stringFromFile(File input){
+    //Score: 5
+    @Test
+    void testTraverseHuffmanTreeContent() throws Exception{
+        TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
+        HuffmanCoding studentEncoder =  new HuffmanEncoder();
+
+        File nonCollider = new File("NonCollidingTest.txt");
+
+        TrueHuffTree correctHuffTree = correctEncoder.buildTree(nonCollider);
+        String expectedTable = correctEncoder.traverseHuffmanTree(correctHuffTree).trim();
+
+        assertTimeoutPreemptively(ofMillis(2000), () -> {
+            String studentTable = null;
+            studentEncoder.getFrequencies(nonCollider);
+            HuffTree studentHuffTree = studentEncoder.buildTree(nonCollider);
+            studentTable = studentEncoder.traverseHuffmanTree(studentHuffTree).trim();
+
+            HashMap<Character, String> expected = getMapping(expectedTable);
+            HashMap<Character, String> student = getMapping(studentTable);
+
+
+            assertEquals(expected, student);
+        });
+
+
+    }
+
+    private HashMap<Character,String> getMapping(String expectedTable) {
+        HashMap<Character,String> table = new HashMap<Character, String>();
+        String[] encodePairs = expectedTable.split("\n");
+        for(String pair : encodePairs){
+            table.put(pair.charAt(0), pair.substring(2));
+        }
+        return table;
+    }
+
+    public String stringFromFile(File input) throws Exception{
         Scanner s = null;
         try {
             s = new Scanner(input);
