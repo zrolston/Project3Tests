@@ -103,7 +103,7 @@ class HuffEncoderTest {
 
         String fileString = stringFromFile(nonCollider).trim();
 
-        //assertTimeoutPreemptively(ofMillis(1500), () -> {
+        assertTimeoutPreemptively(ofMillis(1500), () -> {
             studentEncoder.getFrequencies(nonCollider);
             HuffTree studentHuffTree = studentEncoder.buildTree(nonCollider);
             String studentEncode = null;
@@ -112,7 +112,7 @@ class HuffEncoderTest {
             HuffmanEncoder newStudentEncoder =  new HuffmanEncoder();
             studentDecode = newStudentEncoder.decodeFile(studentEncode, studentHuffTree).trim();
             assertEquals(fileString, studentDecode);
-        //});
+        });
     }
 
     //Score: 10
