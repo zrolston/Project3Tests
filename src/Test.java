@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        HuffmanCoding hc = new HuffmanEncoder();
+        HuffmanEncoder hc = new HuffmanEncoder();
         File myF = new File("randTest.txt");
         System.out.println(hc.getFrequencies(myF));
         HuffTree myTree = (hc.buildTree(myF));
