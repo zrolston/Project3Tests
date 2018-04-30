@@ -78,7 +78,7 @@ class HuffEncoderTest {
         HuffmanEncoder studentEncoder =  new HuffmanEncoder();
 
         File nonCollider = new File("HelloWorld.txt");
-        String expectedTable = correctEncoder.getFrequencies(nonCollider).trim();
+        String expectedTable = correctEncoder.getFrequencies(nonCollider);
 
         assertTimeoutPreemptively(ofMillis(2000), () -> {
             String studentTable = null;
