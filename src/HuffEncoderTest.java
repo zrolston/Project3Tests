@@ -215,7 +215,7 @@ class HuffEncoderTest {
         });
     }
 
-    //Score: 5
+    //Score: 2
     @Test
     void testTraverseHuffmanTreeFormat() throws Exception{
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
@@ -236,7 +236,7 @@ class HuffEncoderTest {
         });
     }
 
-    //Score: 5
+    //Score: 8
     @Test
     void testTraverseHuffmanTreeContent() throws Exception{
         TrueHuffEncoder correctEncoder = new TrueHuffEncoder();
