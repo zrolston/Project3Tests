@@ -47,7 +47,8 @@ public class Test {
         return myList;
     }
 
-    static String generateTestStrring(int num){
+    //Generates a non-colliding string of length num
+    static String generateTestString(int num){
         StringBuilder writeString = new StringBuilder();
         int length = 0;
 
